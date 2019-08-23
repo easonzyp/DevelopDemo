@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/mainBg">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="汇率转换"
+            android:textColor="@color/maintextcolor"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_top_from"
+        android:layout_width="0dp"
+        android:layout_height="160dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/exchange_corner_bg"
+        android:padding="15dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/rl_top_to"
+        app:layout_constraintTop_toBottomOf="@+id/rl_title">
+
+        <TextView
+            android:id="@+id/tv_from_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="货币名称:"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_from_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_from_name_label"
+            android:layout_marginTop="5dp"
+            tools:text="人民币"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_from_code_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_from_name"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/white"
+            android:text="货币代码:"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_from_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_from_code_label"
+            android:layout_marginTop="5dp"
+            tools:text="CNY"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_from_current_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="汇率"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_from_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            tools:text="0.0032"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <com.android.develop.DevelopDemo.wight.customVheelView.WheelVerticalView
+        android:id="@+id/wv_choose_from"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@+id/rl_top_from"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/exchange_color_gradient"
+        app:isCyclic="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/wv_choose_to"
+        app:layout_constraintTop_toBottomOf="@+id/rl_top_from"
+        app:selectionDivider="@color/maintextcolor"
+        app:selectionDividerHeight="1dp">
+
+    </com.android.develop.DevelopDemo.wight.customVheelView.WheelVerticalView>
+
+    <RelativeLayout
+        android:id="@+id/rl_top_to"
+        android:layout_width="0dp"
+        android:layout_height="160dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/exchange_corner_bg"
+        android:padding="15dp"
+        app:layout_constraintLeft_toRightOf="@+id/rl_top_from"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rl_title">
+
+        <TextView
+            android:id="@+id/tv_to_name_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="货币名称:"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_to_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_to_name_label"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            tools:text="日元" />
+
+        <TextView
+            android:id="@+id/tv_to_code_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_to_name"
+            android:textColor="@color/white"
+            android:layout_marginTop="15dp"
+            android:text="货币代码"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_to_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_to_code_label"
+            android:layout_marginTop="5dp"
+            tools:text="JPY"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_to_current_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/white"
+            android:text="汇率"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_to_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/white"
+            android:layout_marginTop="10dp"
+            tools:text="305.9416"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <com.android.develop.DevelopDemo.wight.customVheelView.WheelVerticalView
+        android:id="@+id/wv_choose_to"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/exchange_color_gradient"
+        app:isCyclic="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/wv_choose_from"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rl_top_to"
+        app:selectionDivider="@color/maintextcolor"
+        app:selectionDividerHeight="1dp" />
+</android.support.constraint.ConstraintLayout>

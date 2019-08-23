@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_joke"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:lineSpacingMultiplier="1.3"
+        android:textColor="@color/maintextcolor"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="本人苦哔快递员，今天有笔快递名字叫做：“爷爷“。这不是明摆着占我的便宜吗。我也不傻，电话一通就问：“请问你的快递名是什么?”他说：“爷爷。”我长长的嗯了一声：“对了，有你的快递!" />
+</android.support.constraint.ConstraintLayout>

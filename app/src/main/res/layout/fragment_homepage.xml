@@ -1,6 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/mainColor"
+        app:layout_constraintDimensionRatio="w,3:4"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/rl_title"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/hometopcolor"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <ImageView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:visibility="invisible"
+                android:padding="10dp"
+                android:src="@mipmap/home_unchecked_icon" />
+
+            <TextView
+                android:id="@+id/tv_city_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="哈尔滨"
+                android:textColor="@color/oldlace" />
+
+            <ImageView
+                android:id="@+id/iv_city_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="5dp"
+                android:padding="10dp"
+                android:src="@mipmap/city_icon" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_temperature_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rl_title"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            tools:text="30°"
+            android:textColor="@color/oldlace"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/tv_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_temperature_value"
+            android:layout_marginLeft="20dp"
+            tools:text="晴"
+            android:textColor="@color/oldlace"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_direct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_humidity_babel"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            tools:text="东北风"
+            android:textColor="@color/oldlace"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_power"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv_direct"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv_direct"
+            tools:text="2级"
+            android:textColor="@color/oldlace"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_humidity_babel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/tv_aqi_babel"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:text="相对湿度"
+            android:textColor="@color/oldlace"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_humidity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv_humidity_babel"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv_humidity_babel"
+            tools:text="60%"
+            android:textColor="@color/oldlace"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_aqi_babel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="20dp"
+            android:text="空气质量"
+            android:textColor="@color/oldlace"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tv_aqi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/tv_aqi_babel"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/tv_aqi_babel"
+            tools:text="60"
+            android:textColor="@color/oldlace"
+            android:textSize="12sp" />
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_future_weather"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rl_container"
+        tools:listitem="@layout/item_future_weather_list" />
+
 
 </android.support.constraint.ConstraintLayout>

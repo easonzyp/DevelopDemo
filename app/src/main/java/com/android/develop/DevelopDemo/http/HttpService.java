@@ -2,7 +2,12 @@ package com.android.develop.DevelopDemo.http;
 
 
 
+import com.android.develop.DevelopDemo.response.ExchangeCurrencyResponse;
+import com.android.develop.DevelopDemo.response.ExchangeListResponse;
+import com.android.develop.DevelopDemo.response.JokeListResponse;
 import com.android.develop.DevelopDemo.response.NewsListResponse;
+import com.android.develop.DevelopDemo.response.TestH5Response;
+import com.android.develop.DevelopDemo.response.WeatherResponse;
 
 import java.util.List;
 import java.util.Map;
@@ -46,4 +51,22 @@ public interface HttpService {
 
     @POST()
     Flowable<NewsListResponse> getNewsList(@Url String url, @QueryMap Map<String, String> map);
+
+    @POST()
+    Flowable<TestH5Response> testH5(@Url String url, @QueryMap Map<String, String> map);
+
+    @POST()
+    Flowable<TestH5Response> testDownload(@Url String url, @QueryMap Map<String, String> map);
+
+    @POST()
+    Flowable<WeatherResponse> getWeatherByCity(@Url String url, @QueryMap Map<String, String> map);
+
+    @POST()
+    Flowable<ExchangeListResponse> getExchangeList(@Url String url, @QueryMap Map<String, String> map);
+
+    @POST()
+    Flowable<ExchangeCurrencyResponse> getExchangeCurrency(@Url String url, @QueryMap Map<String, String> map);
+
+    @POST()
+    Flowable<JokeListResponse> getJokeList(@Url String url, @QueryMap Map<String, String> map);
 }

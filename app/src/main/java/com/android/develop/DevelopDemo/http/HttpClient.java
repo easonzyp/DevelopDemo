@@ -54,7 +54,7 @@ public final class HttpClient {
     private static final class RetrofitHolder {
 
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
-                .baseUrl("http://v.juhe.cn/")
+                .baseUrl("http://apis.juhe.cn/")
                 .client(OKHttpHolder.OK_HTTP_CLIENT)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

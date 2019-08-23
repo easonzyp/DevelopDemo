@@ -1,80 +1,91 @@
 package com.android.develop.DevelopDemo.activity;
 
-import android.support.v4.app.FragmentManager;
+import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.FrameLayout;
 import android.widget.RadioGroup;
 
 import com.android.develop.DevelopDemo.R;
+import com.android.develop.DevelopDemo.base.BaseActivity;
+import com.android.develop.DevelopDemo.base.BaseFragment;
 import com.android.develop.DevelopDemo.fragment.HomepageFragment;
 import com.android.develop.DevelopDemo.fragment.JokeFragment;
-import com.android.develop.DevelopDemo.fragment.ParitiesFragment;
+import com.android.develop.DevelopDemo.fragment.ExchangeFragment;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
-    private FrameLayout fl_container;
     private RadioGroup rg_main;
-    private FragmentManager fragmentManager;
+    private BaseFragment[] fragmentArray;
+    private int currentIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        /*Map<String,String> params = new HashMap<>();
-        params.put("key","13a4128e0b37c19ef55186ad9e6ac664");
-        params.put("type","top");
-        HttpAction.getInstance().getNewsList(params).subscribe(new BaseObserver<>(new CallBackListener<NewsListResponse>() {
-            @Override
-            public void onSuccess(NewsListResponse response) throws IOException {
-//                Log.e("======>", "onSuccess: " + response.getResult().getStat());
-                ToastUtil.showShortToast(MainActivity.this,  response.getResult().getData().get(0).getAuthor_name());
-            }
-
-            @Override
-            public void onError(int code, String message) {
-                ToastUtil.showShortToast(MainActivity.this, message);
-            }
-        }));*/
 
         initView();
         initFragment();
         initClick();
     }
 
+    @Override
+    public int getLayoutId() {
+        return R.layout.activity_main;
+    }
+
     private void initView() {
-        fl_container = findViewById(R.id.fl_container);
         rg_main = findViewById(R.id.rg_main);
     }
 
     private void initFragment() {
-        fragmentManager = getSupportFragmentManager();
-        final FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fl_container, new HomepageFragment());
-        transaction.commit();
+
+        fragmentArray = new BaseFragment[] {
+                new HomepageFragment(),
+                new ExchangeFragment(),
+                new JokeFragment()
+        };
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        //设置为默认界面 MainHomeFragment
+        ft.add(R.id.fl_container,fragmentArray[0]).commit();
     }
 
     private void initClick() {
+
         rg_main.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                //根据RadioButton不同的Id来选中不同的Fragment。
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 switch (checkedId) {
                     case R.id.rb_home:
-                        transaction.replace(R.id.fl_container, new HomepageFragment());
+                        setIndexSelected(0);
                         break;
-                    case R.id.rb_parities:
-                        transaction.replace(R.id.fl_container, new ParitiesFragment());
+                    case R.id.rb_exchange:
+                        setIndexSelected(1);
                         break;
                     case R.id.rb_joke:
-                        transaction.replace(R.id.fl_container, new JokeFragment());
+                        setIndexSelected(2);
                         break;
                 }
-                transaction.commit();
             }
         });
+    }
+
+    //设置Fragment页面
+    private void setIndexSelected(int index) {
+        if (currentIndex == index) {
+            return;
+        }
+        //开启事务
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        //隐藏当前Fragment
+        ft.hide(fragmentArray[currentIndex]);
+        //判断Fragment是否已经添加
+        if (!fragmentArray[index].isAdded()) {
+            ft.add(R.id.fl_container,fragmentArray[index]).show(fragmentArray[index]);
+        }else {
+            //显示新的Fragment
+            ft.show(fragmentArray[index]);
+        }
+        ft.commit();
+        currentIndex = index;
     }
 }

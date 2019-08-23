@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/fl_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="@color/mainBg" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_above="@+id/rg_main"
         android:background="@color/mainBg" />
 
     <RadioGroup
         android:id="@+id/rg_main"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal">
@@ -40,12 +38,12 @@
             android:textSize="12sp" />
 
         <RadioButton
-            android:id="@+id/rb_parities"
+            android:id="@+id/rb_exchange"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@drawable/parities_checked_selector"
+            android:drawableTop="@drawable/exchange_checked_selector"
             android:gravity="center"
             android:text="汇率"
             android:textColor="@drawable/home_text_checked_selector"
@@ -72,8 +70,8 @@
             android:drawableTop="@drawable/joke_checked_selector"
             android:gravity="center"
             android:text="笑话"
-            android:visibility="gone"
             android:textColor="@drawable/home_text_checked_selector"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="gone" />
     </RadioGroup>
-</RelativeLayout>
+</LinearLayout>

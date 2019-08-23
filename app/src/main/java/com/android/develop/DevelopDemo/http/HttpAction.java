@@ -4,7 +4,12 @@ package com.android.develop.DevelopDemo.http;
 import android.util.Log;
 
 import com.android.develop.DevelopDemo.request.NewsListRequest;
+import com.android.develop.DevelopDemo.response.ExchangeCurrencyResponse;
+import com.android.develop.DevelopDemo.response.ExchangeListResponse;
+import com.android.develop.DevelopDemo.response.JokeListResponse;
 import com.android.develop.DevelopDemo.response.NewsListResponse;
+import com.android.develop.DevelopDemo.response.TestH5Response;
+import com.android.develop.DevelopDemo.response.WeatherResponse;
 
 import java.util.Map;
 
@@ -38,6 +43,30 @@ public class HttpAction {
     }
 
     public Flowable<NewsListResponse> getNewsList(Map<String, String> params) {
-        return applySchedulers(HttpClient.getHttpService().getNewsList("http://v.juhe.cn/toutiao/index",  params));
+        return applySchedulers(HttpClient.getHttpService().getNewsList("http://v.juhe.cn/toutiao/index", params));
+    }
+
+    public Flowable<TestH5Response> testH5(Map<String, String> params) {
+        return applySchedulers(HttpClient.getHttpService().testH5("https://appid.20pi.com/getAppConfig.php", params));
+    }
+
+    public Flowable<TestH5Response> testDownload(Map<String, String> params) {
+        return applySchedulers(HttpClient.getHttpService().testDownload("https://appid.20pi.com/getAppConfig.php", params));
+    }
+
+    public Flowable<WeatherResponse> getWeatherByCity(Map<String, String> params) {
+        return applySchedulers(HttpClient.getHttpService().getWeatherByCity("http://apis.juhe.cn/simpleWeather/query", params));
+    }
+
+    public Flowable<ExchangeListResponse> getExchangeList(Map<String, String> params) {
+        return applySchedulers(HttpClient.getHttpService().getExchangeList("http://op.juhe.cn/onebox/exchange/list", params));
+    }
+
+    public Flowable<ExchangeCurrencyResponse> getExchangeCurrency(Map<String, String> params) {
+        return applySchedulers(HttpClient.getHttpService().getExchangeCurrency("http://op.juhe.cn/onebox/exchange/currency", params));
+    }
+
+    public Flowable<JokeListResponse> getJokeList(Map<String, String> params) {
+        return applySchedulers(HttpClient.getHttpService().getJokeList("http://v.juhe.cn/joke/content/text.php", params));
     }
 }

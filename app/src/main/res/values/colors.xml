@@ -4,10 +4,14 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="mainColor">#D5382E</color>
+    <color name="mainColor">#61E1FE</color>
+    <color name="mainSecondColor">#a1eeff</color>
     <color name="mainBg">#f4f4f4</color>
+    <color name="line">#f0f0f0</color>
     <color name="maintextcolor">#4d4d4d</color>
+    <color name="hometopcolor">#30000000</color>
 
+    <color name="black">#000000</color>
     <color name="white">#ffffff</color>
     <color name="ivory">#fffff0</color>
     <color name="lightyellow">#ffffe0</color>
@@ -83,7 +87,7 @@
     <color name="firebrick">#b22222</color>
     <color name="powderblue">#b0e0e6</color>
     <color name="lightsteelblue">#b0c4de</color>
-    <color name="paleturquoise">#afeeee</color>
+    <color name="paleturquoise">#61E1FE</color>
     <color name="greenyellow">#adff2f</color>
     <color name="lightblue">#add8e6</color>
     <color name="darkgray">#a9a9a9</color>
@@ -136,7 +140,6 @@
     <color name="dodgerblue">#1e90ff</color>
     <color name="midnightblue">#191970</color>
     <color name="aqua">#00ffff</color>
-    <color name="cyan">#00ffff</color>
     <color name="springgreen">#00ff7f</color>
     <color name="lime">#00ff00</color>
     <color name="mediumspringgreen">#00fa9a</color>
