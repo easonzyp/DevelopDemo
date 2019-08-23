@@ -1,9 +1,14 @@
 package com.android.develop.DevelopDemo.base;
 
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -11,6 +16,8 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
 import com.android.develop.DevelopDemo.util.StatusBarHelper;
+
+import java.util.List;
 
 /**
  * Activity基类
@@ -23,10 +30,6 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 是否允许全屏
      **/
     public boolean mAllowFullScreen = false;
-    /**
-     * 是否沉浸状态栏
-     **/
-    public boolean isSetStatusBar = false;
     /**
      * 是否禁止旋转屏幕
      **/
@@ -52,27 +55,15 @@ public abstract class BaseActivity extends AppCompatActivity {
             requestWindowFeature(Window.FEATURE_NO_TITLE);
         }
 
-        /*if (isSetStatusBar) {
-            steepStatusBar();
-        }*/
-
         if (!isAllowScreenRoate) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         } else {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
-
-//        StatusBarHelper helper = StatusBarHelper.getInstance().init(this);
-//        helper.setStatusBar(this, true, 0);
-//        helper.setStatusTextColor(this, true);
     }
 
     public void initParam(Bundle bundle) {
 
-    }
-
-    protected <T extends View> T findView(int id) {
-        return (T) findViewById(id);
     }
 
     /**
@@ -81,7 +72,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void hideSoftInput() {
         InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
         if (getCurrentFocus() != null) {
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            if (imm != null) {
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+            }
         }
     }
 
@@ -91,25 +84,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     public void showInputMethod() {
         if (getCurrentFocus() != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            imm.showSoftInputFromInputMethod(getCurrentFocus().getWindowToken(), 0);
-        }
-    }
-
-    /**
-     * 是否开启全屏
-     */
-    public void setAllowFullScreen(boolean allowFullScreen) {
-        this.mAllowFullScreen = allowFullScreen;
-    }
-
-    private void steepStatusBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            // 透明状态栏
-            getWindow().addFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            // 透明导航栏
-            getWindow().addFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            if (imm != null) {
+                imm.showSoftInputFromInputMethod(getCurrentFocus().getWindowToken(), 0);
+            }
         }
     }
 

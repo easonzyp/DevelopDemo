@@ -7,7 +7,7 @@ import com.android.develop.DevelopDemo.base.BaseResponse;
  * class note:
  */
 
-public class TestH5Response extends BaseResponse {
+public class UpdateInfoResponse extends BaseResponse {
 
     /**
      * success : true

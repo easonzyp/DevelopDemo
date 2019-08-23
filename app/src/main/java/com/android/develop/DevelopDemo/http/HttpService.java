@@ -2,11 +2,12 @@ package com.android.develop.DevelopDemo.http;
 
 
 
+import com.android.develop.DevelopDemo.response.CityListResponse;
 import com.android.develop.DevelopDemo.response.ExchangeCurrencyResponse;
 import com.android.develop.DevelopDemo.response.ExchangeListResponse;
 import com.android.develop.DevelopDemo.response.JokeListResponse;
 import com.android.develop.DevelopDemo.response.NewsListResponse;
-import com.android.develop.DevelopDemo.response.TestH5Response;
+import com.android.develop.DevelopDemo.response.UpdateInfoResponse;
 import com.android.develop.DevelopDemo.response.WeatherResponse;
 
 import java.util.List;
@@ -14,14 +15,11 @@ import java.util.Map;
 
 import io.reactivex.Flowable;
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
-import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
-import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Streaming;
 import retrofit2.http.Url;
@@ -53,10 +51,10 @@ public interface HttpService {
     Flowable<NewsListResponse> getNewsList(@Url String url, @QueryMap Map<String, String> map);
 
     @POST()
-    Flowable<TestH5Response> testH5(@Url String url, @QueryMap Map<String, String> map);
+    Flowable<UpdateInfoResponse> getUpdateInfo(@Url String url, @QueryMap Map<String, String> map);
 
     @POST()
-    Flowable<TestH5Response> testDownload(@Url String url, @QueryMap Map<String, String> map);
+    Flowable<UpdateInfoResponse> testDownload(@Url String url, @QueryMap Map<String, String> map);
 
     @POST()
     Flowable<WeatherResponse> getWeatherByCity(@Url String url, @QueryMap Map<String, String> map);
@@ -69,4 +67,7 @@ public interface HttpService {
 
     @POST()
     Flowable<JokeListResponse> getJokeList(@Url String url, @QueryMap Map<String, String> map);
+
+    @POST()
+    Flowable<CityListResponse> getCityList(@Url String url, @QueryMap Map<String, String> map);
 }

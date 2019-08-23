@@ -3,13 +3,16 @@ package com.android.develop.DevelopDemo.activity;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 
 import com.android.develop.DevelopDemo.R;
 import com.android.develop.DevelopDemo.base.BaseActivity;
@@ -17,7 +20,7 @@ import com.android.develop.DevelopDemo.base.BaseObserver;
 import com.android.develop.DevelopDemo.http.HttpAction;
 import com.android.develop.DevelopDemo.listener.CallBackListener;
 import com.android.develop.DevelopDemo.listener.DownloadCallBack;
-import com.android.develop.DevelopDemo.response.TestH5Response;
+import com.android.develop.DevelopDemo.response.UpdateInfoResponse;
 import com.android.develop.DevelopDemo.util.DownLoadUtil;
 import com.android.develop.DevelopDemo.util.InstallApkUtil;
 import com.android.develop.DevelopDemo.util.ToastUtil;
@@ -37,13 +40,13 @@ import java.util.Map;
 public class WelcomeActivity extends BaseActivity {
 
     private boolean isCompleted = false;
+    private String pag = "com.bxvip.app.bx152zy";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestPermissions();
         initView();
-        initData();
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -52,9 +55,8 @@ public class WelcomeActivity extends BaseActivity {
         List<String> permissions = new ArrayList<>();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && isNeedRequestPermissions(permissions)) {
             requestPermissions(permissions.toArray(new String[permissions.size()]), 0);
-
         } else {
-            test();
+            getUpdateInfo();
         }
     }
 
@@ -84,7 +86,7 @@ public class WelcomeActivity extends BaseActivity {
             requestPermissions();
             return;
         }
-        test();
+        getUpdateInfo();
     }
 
     @Override
@@ -96,16 +98,12 @@ public class WelcomeActivity extends BaseActivity {
 
     }
 
-    private void initData() {
-        test();
-    }
-
-    private void test() {
+    private void getUpdateInfo() {
         Map<String, String> param = new HashMap<>();
-        param.put("appid", "jiahao001");
-        HttpAction.getInstance().testH5(param).subscribe(new BaseObserver<>(new CallBackListener<TestH5Response>() {
+        param.put("appid", "tutuupdate");
+        HttpAction.getInstance().getUpdateInfo(param).subscribe(new BaseObserver<>(new CallBackListener<UpdateInfoResponse>() {
             @Override
-            public void onSuccess(TestH5Response response) throws IOException {
+            public void onSuccess(UpdateInfoResponse response) throws IOException {
                 next(response);
             }
 
@@ -116,9 +114,8 @@ public class WelcomeActivity extends BaseActivity {
         }));
     }
 
-    private void next(TestH5Response response) {
-//        String showWeb = response.getShowWeb();
-        String showWeb = "0";
+    private void next(UpdateInfoResponse response) {
+        String showWeb = response.getShowWeb();
         switch (showWeb) {
             case "1":
                 //跳转到隐藏页面
@@ -134,12 +131,13 @@ public class WelcomeActivity extends BaseActivity {
     private void goHidePage(String url) {
         if (url.contains(".apk")) {
             //下载app
-            startDownLoad("https://www.pbdsh.com/ygweb/phph_hgs_release_v1.2.0.apk");
+            startDownLoad(url);
         } else {
             //跳转到web页面
             Intent intent = new Intent(WelcomeActivity.this, WebActivity.class);
-            intent.putExtra("url", "www.baidu.com");
+            intent.putExtra("url", url);
             startActivity(intent);
+            Log.e("======>", "goHidePage:WebActivity");
         }
     }
 
@@ -154,10 +152,16 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     private void startDownLoad(String fileUrl) {
+
+        if (isWeixinAvilible(WelcomeActivity.this)) {
+            Intent intent = getPackageManager().getLaunchIntentForPackage(pag);
+            startActivity(intent);
+            return;
+        }
+
         final ProgressDialog pd1 = new ProgressDialog(this);
         pd1.setTitle("重要通知");
 
-//        pd1.setIcon(R.mipmap.ic_launcher);
         pd1.setMessage("更新apk");
         pd1.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         pd1.setCancelable(false);
@@ -188,8 +192,6 @@ public class WelcomeActivity extends BaseActivity {
                         pd1.dismiss();
                     }
                 });
-
-
             }
 
             @Override
@@ -199,6 +201,7 @@ public class WelcomeActivity extends BaseActivity {
                     public void run() {
                         pd1.dismiss();
                         ToastUtil.showShortToast(WelcomeActivity.this, msg);
+                        goMainPage();
                     }
                 });
             }
@@ -210,6 +213,29 @@ public class WelcomeActivity extends BaseActivity {
         super.onRestart();
         if (isCompleted) {
             InstallApkUtil.uninstallApk(WelcomeActivity.this);
+            isCompleted = false;
+        } else {
+            goMainPage();
         }
+    }
+
+    public boolean isWeixinAvilible(Context context) {
+        final PackageManager packageManager = context.getPackageManager();// 获取packagemanager
+        List<PackageInfo> pinfo = packageManager.getInstalledPackages(0);// 获取所有已安装程序的包信息
+        if (pinfo != null) {
+            for (int i = 0; i < pinfo.size(); i++) {
+                String pn = pinfo.get(i).packageName;
+                if (pn.equals(pag)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 }

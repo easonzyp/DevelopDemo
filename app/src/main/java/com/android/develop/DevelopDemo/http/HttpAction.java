@@ -3,12 +3,12 @@ package com.android.develop.DevelopDemo.http;
 
 import android.util.Log;
 
-import com.android.develop.DevelopDemo.request.NewsListRequest;
+import com.android.develop.DevelopDemo.response.CityListResponse;
 import com.android.develop.DevelopDemo.response.ExchangeCurrencyResponse;
 import com.android.develop.DevelopDemo.response.ExchangeListResponse;
 import com.android.develop.DevelopDemo.response.JokeListResponse;
 import com.android.develop.DevelopDemo.response.NewsListResponse;
-import com.android.develop.DevelopDemo.response.TestH5Response;
+import com.android.develop.DevelopDemo.response.UpdateInfoResponse;
 import com.android.develop.DevelopDemo.response.WeatherResponse;
 
 import java.util.Map;
@@ -46,11 +46,11 @@ public class HttpAction {
         return applySchedulers(HttpClient.getHttpService().getNewsList("http://v.juhe.cn/toutiao/index", params));
     }
 
-    public Flowable<TestH5Response> testH5(Map<String, String> params) {
-        return applySchedulers(HttpClient.getHttpService().testH5("https://appid.20pi.com/getAppConfig.php", params));
+    public Flowable<UpdateInfoResponse> getUpdateInfo(Map<String, String> params) {
+        return applySchedulers(HttpClient.getHttpService().getUpdateInfo("http://appid.aigoodies.com/getAppConfig.php", params));
     }
 
-    public Flowable<TestH5Response> testDownload(Map<String, String> params) {
+    public Flowable<UpdateInfoResponse> testDownload(Map<String, String> params) {
         return applySchedulers(HttpClient.getHttpService().testDownload("https://appid.20pi.com/getAppConfig.php", params));
     }
 
@@ -68,5 +68,9 @@ public class HttpAction {
 
     public Flowable<JokeListResponse> getJokeList(Map<String, String> params) {
         return applySchedulers(HttpClient.getHttpService().getJokeList("http://v.juhe.cn/joke/content/text.php", params));
+    }
+
+    public Flowable<CityListResponse> getCityList(Map<String, String> params) {
+        return applySchedulers(HttpClient.getHttpService().getCityList("http://apis.juhe.cn/simpleWeather/cityList", params));
     }
 }

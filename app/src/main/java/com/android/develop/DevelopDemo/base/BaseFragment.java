@@ -9,8 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-
 /**
  * Fragment基类
  * <p>
@@ -70,13 +68,5 @@ public abstract class BaseFragment extends Fragment {
      * 点击事件
      */
     protected void initClick() {
-    }
-
-    public SmartRefreshLayout getSmartRefreshLayout() {
-        return null;
-    }
-
-    public View getEmptyView() {
-        return null;
     }
 }

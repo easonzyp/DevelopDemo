@@ -1,15 +1,18 @@
 package com.android.develop.DevelopDemo.fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.develop.DevelopDemo.R;
+import com.android.develop.DevelopDemo.activity.ChooseCityListActivity;
 import com.android.develop.DevelopDemo.adapter.WeatherAdapter;
 import com.android.develop.DevelopDemo.base.BaseFragment;
 import com.android.develop.DevelopDemo.base.BaseObserver;
@@ -44,7 +47,7 @@ public class HomepageFragment extends BaseFragment {
 
     private WeatherResponse weatherResponse;
 
-    List<WeatherResponse.ResultBean.FutureBean> futureList;
+    private List<WeatherResponse.ResultBean.FutureBean> futureList;
     private WeatherAdapter adapter;
 
     @Override
@@ -63,7 +66,7 @@ public class HomepageFragment extends BaseFragment {
         futureList = new ArrayList<>();
         adapter = new WeatherAdapter(getActivity(), futureList);
         rv_future_weather.addItemDecoration(new MyDividerItemDecoration(
-                getActivity(),MyDividerItemDecoration.HORIZONTAL_LIST,1,ContextCompat.getColor(getActivity(),R.color.mainBg)));
+                getActivity(), MyDividerItemDecoration.HORIZONTAL_LIST, 1, ContextCompat.getColor(getActivity(), R.color.mainBg)));
         rv_future_weather.setLayoutManager(new LinearLayoutManager(getActivity()));
         rv_future_weather.setAdapter(adapter);
     }
@@ -109,9 +112,21 @@ public class HomepageFragment extends BaseFragment {
         iv_city_list.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivityForResult(new Intent(HomepageFragment.this.getContext(), ChooseCityListActivity.class), 1001);
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == Activity.RESULT_OK) {
+            city = data.getStringExtra("city");
+            if (!TextUtils.isEmpty(city)) {
+                initData();
+                tv_city_name.setText(city);
+            }
+        }
     }
 
     @Override
