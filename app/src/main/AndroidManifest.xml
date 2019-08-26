@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.android.develop.DevelopDemo">
+    package="com.zhangyp.develop.HappyTools">
 
     <permission
-        android:name="com.android.develop.DevelopDemo.permission.JPUSH_MESSAGE"
+        android:name="com.zhangyp.develop.HappyTools.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.android.develop.DevelopDemo.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="com.zhangyp.develop.HappyTools.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -44,7 +44,7 @@
 
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.android.develop.DevelopDemo.fileProvider"
+            android:authorities="com.android.develop.HappyTools.fileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -70,7 +70,7 @@
         <!-- since 3.0.9 Required SDK 核心功能-->
         <provider
             android:name="cn.jpush.android.service.DataProvider"
-            android:authorities="com.android.develop.DevelopDemo.DataProvider"
+            android:authorities="com.android.develop.HappyTools.DataProvider"
             android:exported="true" />
 
         <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的 JPush 服务相互拉起的功能。 -->
@@ -81,14 +81,14 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
-                <category android:name="com.android.develop.DevelopDemo" />
+                <category android:name="com.zhangyp.develop.HappyTools" />
             </intent-filter>
         </service>
 
         <!-- since 3.1.0 Required SDK 核心功能-->
         <provider
             android:name="cn.jpush.android.service.DownloadProvider"
-            android:authorities="com.android.develop.DevelopDemo.DownloadProvider"
+            android:authorities="com.android.develop.HappyTools.DownloadProvider"
             android:exported="true" />
 
         <!-- Required SDK 核心功能-->
@@ -97,7 +97,7 @@
             android:enabled="true">
             <intent-filter android:priority="1000">
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
-                <category android:name="com.android.develop.DevelopDemo" />
+                <category android:name="com.zhangyp.develop.HappyTools" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
@@ -122,7 +122,7 @@
                 <action android:name="cn.jpush.android.ui.PushActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.android.develop.DevelopDemo" />
+                <category android:name="com.zhangyp.develop.HappyTools" />
             </intent-filter>
         </activity>
         <!-- SDK 核心功能-->
@@ -133,7 +133,7 @@
             android:theme="@style/MyDialogStyle">
             <intent-filter>
                 <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.android.develop.DevelopDemo" />
+                <category android:name="com.zhangyp.develop.HappyTools" />
             </intent-filter>
         </activity>
 
@@ -168,7 +168,7 @@
             android:exported="false">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
-                <category android:name="com.android.develop.DevelopDemo" />
+                <category android:name="com.zhangyp.develop.HappyTools" />
             </intent-filter>
         </receiver>
 
@@ -190,7 +190,7 @@
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
                 <!-- 接收网络变化 连接/断开 since 1.6.3 -->
                 <action android:name="cn.jpush.android.intent.CONNECTION" />
-                <category android:name="com.android.develop.DevelopDemo" />
+                <category android:name="com.zhangyp.develop.HappyTools" />
             </intent-filter>
         </receiver>
 
@@ -199,7 +199,7 @@
         <!--<receiver android:name="xx.xx.xx.MyWakedResultReceiver">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.WakedReceiver" />
-                <category android:name="com.android.develop.DevelopDemo" />
+                <category android:name="com.zhangyp.develop.HappyTools" />
             </intent-filter>
         </receiver>-->
 
@@ -211,7 +211,7 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.JNotifyActivity" />
-                <category android:name="com.android.develop.DevelopDemo" />
+                <category android:name="com.zhangyp.develop.HappyTools" />
             </intent-filter>
         </activity>
         <activity android:name=".activity.ChooseCityListActivity" />
@@ -231,7 +231,7 @@
         <!-- Required. AppKey copied from Portal -->
         <meta-data
             android:name="JPUSH_APPKEY"
-            android:value="52fc967e7808f1a751d66e40" />
+            android:value="bdea87ad81ce2d76bef8d366" />
 
     </application>
 

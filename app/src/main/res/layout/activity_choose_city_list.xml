@@ -26,14 +26,29 @@
             android:text="热门城市"
             android:textColor="@color/maintextcolor"
             android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/iv_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@mipmap/add_icon"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="5dp"/>
     </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/line" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_hot_city"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.android.develop.DevelopDemo.wight.LetterListView
+    <com.zhangyp.develop.HappyTools.wight.LetterListView
         android:id="@+id/llv_right"
         android:layout_width="30dp"
         android:layout_height="match_parent"

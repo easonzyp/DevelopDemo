@@ -93,7 +93,7 @@
             android:textSize="18sp" />
     </RelativeLayout>
 
-    <com.android.develop.DevelopDemo.wight.customVheelView.WheelVerticalView
+    <com.zhangyp.develop.HappyTools.wight.customVheelView.WheelVerticalView
         android:id="@+id/wv_choose_from"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -111,7 +111,7 @@
         app:selectionDivider="@color/maintextcolor"
         app:selectionDividerHeight="1dp">
 
-    </com.android.develop.DevelopDemo.wight.customVheelView.WheelVerticalView>
+    </com.zhangyp.develop.HappyTools.wight.customVheelView.WheelVerticalView>
 
     <RelativeLayout
         android:id="@+id/rl_top_to"
@@ -185,7 +185,7 @@
             android:textSize="18sp" />
     </RelativeLayout>
 
-    <com.android.develop.DevelopDemo.wight.customVheelView.WheelVerticalView
+    <com.zhangyp.develop.HappyTools.wight.customVheelView.WheelVerticalView
         android:id="@+id/wv_choose_to"
         android:layout_width="0dp"
         android:layout_height="0dp"
