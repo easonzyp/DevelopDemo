@@ -8,6 +8,7 @@ import android.widget.RadioGroup;
 import com.zhangyp.develop.HappyTools.R;
 import com.zhangyp.develop.HappyTools.base.BaseActivity;
 import com.zhangyp.develop.HappyTools.base.BaseFragment;
+import com.zhangyp.develop.HappyTools.fragment.DreamFragment;
 import com.zhangyp.develop.HappyTools.fragment.HomepageFragment;
 import com.zhangyp.develop.HappyTools.fragment.JokeFragment;
 import com.zhangyp.develop.HappyTools.fragment.ExchangeFragment;
@@ -42,6 +43,7 @@ public class MainActivity extends BaseActivity {
         fragmentArray = new BaseFragment[]{
                 new HomepageFragment(),
                 new ExchangeFragment(),
+                new DreamFragment(),
                 new JokeFragment()
         };
 
@@ -62,8 +64,11 @@ public class MainActivity extends BaseActivity {
                     case R.id.rb_exchange:
                         setIndexSelected(1);
                         break;
-                    case R.id.rb_joke:
+                    case R.id.rb_dream:
                         setIndexSelected(2);
+                        break;
+                    case R.id.rb_joke:
+                        setIndexSelected(3);
                         break;
                 }
             }

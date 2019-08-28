@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,13 +15,16 @@ import com.zhangyp.develop.HappyTools.base.BaseFragment;
 import com.zhangyp.develop.HappyTools.base.BaseObserver;
 import com.zhangyp.develop.HappyTools.http.HttpAction;
 import com.zhangyp.develop.HappyTools.listener.CallBackListener;
+import com.zhangyp.develop.HappyTools.listener.OnItemClickListener;
 import com.zhangyp.develop.HappyTools.response.JokeListResponse;
+import com.zhangyp.develop.HappyTools.response.RandJokeResponse;
 import com.zhangyp.develop.HappyTools.util.MyDividerItemDecoration;
 import com.zhangyp.develop.HappyTools.util.ToastUtil;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.zhangyp.develop.HappyTools.wight.CustomDialog;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,7 +45,9 @@ public class JokeFragment extends BaseFragment {
     private int page = 1;
 
     private JokeAdapter adapter;
-    private List<JokeListResponse.ResultBean.DataBean> jokeList;
+    private List<RandJokeResponse.ResultBean> jokeList;
+
+    private CustomDialog dialog;
 
     @Override
     protected void initView(View view, Bundle savedInstanceState) {
@@ -64,20 +70,20 @@ public class JokeFragment extends BaseFragment {
 
     private void getJokeList() {
         final Map<String, String> param = new HashMap<>();
-        param.put("page", String.valueOf(page));
-        param.put("pagesize", "10");
+//        param.put("page", String.valueOf(page));
+//        param.put("pagesize", "10");
         param.put("key", "ea6a0ff7628dee8a08e3590da3456573");
-        HttpAction.getInstance().getJokeList(param).subscribe(new BaseObserver<>(new CallBackListener<JokeListResponse>() {
+        HttpAction.getInstance().getRandJoke(param).subscribe(new BaseObserver<>(new CallBackListener<RandJokeResponse>() {
             @Override
-            public void onSuccess(JokeListResponse response) throws IOException {
+            public void onSuccess(RandJokeResponse response) throws IOException {
                 if (page == 1) {
                     //刷新
                     srl_refresh.finishRefresh();
-                    refreshJokeList(response.getResult().getData());
+                    refreshJokeList(response.getResult());
                 } else {
                     //加载更多
                     srl_refresh.finishLoadMore();
-                    loadMoreJokeList(response.getResult().getData());
+                    loadMoreJokeList(response.getResult());
                 }
             }
 
@@ -88,13 +94,13 @@ public class JokeFragment extends BaseFragment {
         }));
     }
 
-    private void refreshJokeList(List<JokeListResponse.ResultBean.DataBean> data) {
+    private void refreshJokeList(List<RandJokeResponse.ResultBean> data) {
         jokeList.clear();
         jokeList.addAll(data);
         adapter.notifyDataSetChanged();
     }
 
-    private void loadMoreJokeList(List<JokeListResponse.ResultBean.DataBean> data) {
+    private void loadMoreJokeList(List<RandJokeResponse.ResultBean> data) {
         jokeList.addAll(data);
         adapter.notifyDataSetChanged();
     }
@@ -114,6 +120,21 @@ public class JokeFragment extends BaseFragment {
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
                 page++;
                 getJokeList();
+            }
+        });
+
+        adapter.setOnItemClickListener(new OnItemClickListener<RandJokeResponse.ResultBean>() {
+            @Override
+            public void onClick(RandJokeResponse.ResultBean obj, int position) {
+                View view = LayoutInflater.from(getActivity()).inflate(R.layout.joke_detail_dialog, null);
+                TextView tv_content = view.findViewById(R.id.tv_content);
+                tv_content.setText(obj.getContent());
+                if (dialog == null) {
+                    dialog = new CustomDialog(getActivity(), view);
+                }
+
+                dialog.setCancelable(true);
+                dialog.show();
             }
         });
 

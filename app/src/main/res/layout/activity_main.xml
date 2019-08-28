@@ -50,6 +50,18 @@
             android:textSize="12sp" />
 
         <RadioButton
+            android:id="@+id/rb_dream"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@drawable/dream_checked_selector"
+            android:gravity="center"
+            android:text="解梦"
+            android:textColor="@drawable/home_text_checked_selector"
+            android:textSize="12sp" />
+
+        <RadioButton
             android:id="@+id/rb_joke"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

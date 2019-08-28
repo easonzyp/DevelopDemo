@@ -216,6 +216,7 @@
         </activity>
         <activity android:name=".activity.ChooseCityListActivity" />
         <activity android:name=".activity.WebActivity" />
+        <activity android:name=".activity.DreamDetailActivity" />
 
         <service
             android:name=".service.PushService"

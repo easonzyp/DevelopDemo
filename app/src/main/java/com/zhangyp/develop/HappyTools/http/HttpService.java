@@ -1,12 +1,14 @@
 package com.zhangyp.develop.HappyTools.http;
 
 
-
 import com.zhangyp.develop.HappyTools.response.CityListResponse;
+import com.zhangyp.develop.HappyTools.response.DreamDetailResponse;
+import com.zhangyp.develop.HappyTools.response.DreamResponse;
 import com.zhangyp.develop.HappyTools.response.ExchangeCurrencyResponse;
 import com.zhangyp.develop.HappyTools.response.ExchangeListResponse;
 import com.zhangyp.develop.HappyTools.response.JokeListResponse;
 import com.zhangyp.develop.HappyTools.response.NewsListResponse;
+import com.zhangyp.develop.HappyTools.response.RandJokeResponse;
 import com.zhangyp.develop.HappyTools.response.UpdateInfoResponse;
 import com.zhangyp.develop.HappyTools.response.WeatherResponse;
 
@@ -70,4 +72,13 @@ public interface HttpService {
 
     @POST()
     Flowable<CityListResponse> getCityList(@Url String url, @QueryMap Map<String, String> map);
+
+    @POST()
+    Flowable<RandJokeResponse> getRandJoke(@Url String url, @QueryMap Map<String, String> map);
+
+    @POST()
+    Flowable<DreamResponse> getDreamList(@Url String url, @QueryMap Map<String, String> map);
+
+    @POST()
+    Flowable<DreamDetailResponse> getDreamDetail(@Url String url, @QueryMap Map<String, String> map);
 }

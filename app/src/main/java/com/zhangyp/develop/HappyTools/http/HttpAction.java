@@ -4,10 +4,13 @@ package com.zhangyp.develop.HappyTools.http;
 import android.util.Log;
 
 import com.zhangyp.develop.HappyTools.response.CityListResponse;
+import com.zhangyp.develop.HappyTools.response.DreamDetailResponse;
+import com.zhangyp.develop.HappyTools.response.DreamResponse;
 import com.zhangyp.develop.HappyTools.response.ExchangeCurrencyResponse;
 import com.zhangyp.develop.HappyTools.response.ExchangeListResponse;
 import com.zhangyp.develop.HappyTools.response.JokeListResponse;
 import com.zhangyp.develop.HappyTools.response.NewsListResponse;
+import com.zhangyp.develop.HappyTools.response.RandJokeResponse;
 import com.zhangyp.develop.HappyTools.response.UpdateInfoResponse;
 import com.zhangyp.develop.HappyTools.response.WeatherResponse;
 
@@ -72,5 +75,17 @@ public class HttpAction {
 
     public Flowable<CityListResponse> getCityList(Map<String, String> params) {
         return applySchedulers(HttpClient.getHttpService().getCityList("http://apis.juhe.cn/simpleWeather/cityList", params));
+    }
+
+    public Flowable<RandJokeResponse> getRandJoke(Map<String, String> params) {
+        return applySchedulers(HttpClient.getHttpService().getRandJoke("http://v.juhe.cn/joke/randJoke.php", params));
+    }
+
+    public Flowable<DreamResponse> getDreamList(Map<String, String> params) {
+        return applySchedulers(HttpClient.getHttpService().getDreamList("http://v.juhe.cn/dream/query", params));
+    }
+
+    public Flowable<DreamDetailResponse> getDreamDetail(Map<String, String> params) {
+        return applySchedulers(HttpClient.getHttpService().getDreamDetail("http://v.juhe.cn/dream/queryid", params));
     }
 }
