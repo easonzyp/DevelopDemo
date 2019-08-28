@@ -43,7 +43,6 @@ public class CityUtil {
         cityList.add("石家庄");
         cityList.add("南昌");
         cityList.add("珠海");
-        cityList.add("齐齐哈尔");
         return cityList;
     }
 }

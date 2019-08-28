@@ -133,6 +133,7 @@ public class JokeFragment extends BaseFragment {
                     dialog = new CustomDialog(getActivity(), view);
                 }
 
+                dialog.setContentView(view);
                 dialog.setCancelable(true);
                 dialog.show();
             }

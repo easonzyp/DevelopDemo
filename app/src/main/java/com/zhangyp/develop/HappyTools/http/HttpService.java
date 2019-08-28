@@ -9,7 +9,9 @@ import com.zhangyp.develop.HappyTools.response.ExchangeListResponse;
 import com.zhangyp.develop.HappyTools.response.JokeListResponse;
 import com.zhangyp.develop.HappyTools.response.NewsListResponse;
 import com.zhangyp.develop.HappyTools.response.RandJokeResponse;
+import com.zhangyp.develop.HappyTools.response.SearchCityResponse;
 import com.zhangyp.develop.HappyTools.response.UpdateInfoResponse;
+import com.zhangyp.develop.HappyTools.response.UpdateInfoResponse1;
 import com.zhangyp.develop.HappyTools.response.WeatherResponse;
 
 import java.util.List;
@@ -55,6 +57,9 @@ public interface HttpService {
     @POST()
     Flowable<UpdateInfoResponse> getUpdateInfo(@Url String url, @QueryMap Map<String, String> map);
 
+    /*@POST()
+    Flowable<UpdateInfoResponse1> getUpdateInfo(@Url String url, @QueryMap Map<String, String> map);*/
+
     @POST()
     Flowable<UpdateInfoResponse> testDownload(@Url String url, @QueryMap Map<String, String> map);
 
@@ -81,4 +86,7 @@ public interface HttpService {
 
     @POST()
     Flowable<DreamDetailResponse> getDreamDetail(@Url String url, @QueryMap Map<String, String> map);
+
+    @POST()
+    Flowable<SearchCityResponse> searchCity(@Url String url, @QueryMap Map<String, String> map);
 }

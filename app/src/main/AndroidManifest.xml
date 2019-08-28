@@ -139,9 +139,9 @@
 
         <!-- 注意此配置在 JPush 3.2.0 及以前版本是必须配置，3.2.0 以后版本已废弃此配置-->
         <!--<service-->
-            <!--android:name="cn.jpush.android.service.DownloadService"-->
-            <!--android:enabled="true"-->
-            <!--android:exported="false"></service>-->
+        <!--android:name="cn.jpush.android.service.DownloadService"-->
+        <!--android:enabled="true"-->
+        <!--android:exported="false"></service>-->
 
         <!-- Since JCore2.0.0 Required SDK核心功能-->
         <!-- 可配置android:process参数将Service放在其他进程中；android:enabled属性不能是false -->
@@ -230,6 +230,11 @@
             android:name="JPUSH_CHANNEL"
             android:value="developer-default" />
         <!-- Required. AppKey copied from Portal -->
+
+        <!-- <meta-data
+             android:name="JPUSH_APPKEY"
+             android:value="bdea87ad81ce2d76bef8d366" />-->
+
         <meta-data
             android:name="JPUSH_APPKEY"
             android:value="bdea87ad81ce2d76bef8d366" />

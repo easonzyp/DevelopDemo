@@ -37,7 +37,7 @@ import java.util.Map;
 
 public class HomepageFragment extends BaseFragment {
 
-    private String city = "哈尔滨";
+    private String city = "北京";
     private TextView tv_city_name;
 
     private ImageView iv_city_list;

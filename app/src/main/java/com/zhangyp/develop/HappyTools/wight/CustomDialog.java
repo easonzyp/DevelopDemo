@@ -2,6 +2,7 @@ package com.zhangyp.develop.HappyTools.wight;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -19,7 +20,6 @@ public class CustomDialog extends Dialog {
     //    style引用style样式
     public CustomDialog(Context context, View layout) {
         super(context, R.style.DialogTheme);
-        setContentView(layout);
         Window window = getWindow();
         if (window == null) {
             return;
@@ -27,5 +27,10 @@ public class CustomDialog extends Dialog {
         WindowManager.LayoutParams params = window.getAttributes();
         params.gravity = Gravity.CENTER;
         window.setAttributes(params);
+    }
+
+    @Override
+    public void setContentView(@NonNull View view) {
+        super.setContentView(view);
     }
 }

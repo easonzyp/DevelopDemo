@@ -93,7 +93,12 @@ public class DreamDetailActivity extends BaseActivity {
     }
 
     private void initClick() {
-
+        tv_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override

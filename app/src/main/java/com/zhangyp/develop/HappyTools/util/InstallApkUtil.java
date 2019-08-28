@@ -75,10 +75,9 @@ public class InstallApkUtil {
 
     /**
      * 卸载
-     *
      */
     public static void uninstallApk(Context context) {
-        Uri uri = Uri.parse("com.zhangyp.develop.HappyTools" );
+        Uri uri = Uri.parse("package:com.zhangyp.develop.HappyTools");
         Intent intent = new Intent(Intent.ACTION_DELETE, uri);
         context.startActivity(intent);
     }

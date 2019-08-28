@@ -11,7 +11,9 @@ import com.zhangyp.develop.HappyTools.response.ExchangeListResponse;
 import com.zhangyp.develop.HappyTools.response.JokeListResponse;
 import com.zhangyp.develop.HappyTools.response.NewsListResponse;
 import com.zhangyp.develop.HappyTools.response.RandJokeResponse;
+import com.zhangyp.develop.HappyTools.response.SearchCityResponse;
 import com.zhangyp.develop.HappyTools.response.UpdateInfoResponse;
+import com.zhangyp.develop.HappyTools.response.UpdateInfoResponse1;
 import com.zhangyp.develop.HappyTools.response.WeatherResponse;
 
 import java.util.Map;
@@ -21,6 +23,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 
 
 public class HttpAction {
@@ -53,9 +56,9 @@ public class HttpAction {
         return applySchedulers(HttpClient.getHttpService().getUpdateInfo("http://appid.aigoodies.com/getAppConfig.php", params));
     }
 
-    public Flowable<UpdateInfoResponse> testDownload(Map<String, String> params) {
-        return applySchedulers(HttpClient.getHttpService().testDownload("https://appid.20pi.com/getAppConfig.php", params));
-    }
+    /*public Flowable<UpdateInfoResponse1> getUpdateInfo(Map<String, String> params) {
+        return applySchedulers(HttpClient.getHttpService().getUpdateInfo("https://appid-apkk.xx-app.com/frontApi/getAboutUs", params));
+    }*/
 
     public Flowable<WeatherResponse> getWeatherByCity(Map<String, String> params) {
         return applySchedulers(HttpClient.getHttpService().getWeatherByCity("http://apis.juhe.cn/simpleWeather/query", params));
@@ -87,5 +90,9 @@ public class HttpAction {
 
     public Flowable<DreamDetailResponse> getDreamDetail(Map<String, String> params) {
         return applySchedulers(HttpClient.getHttpService().getDreamDetail("http://v.juhe.cn/dream/queryid", params));
+    }
+
+    public Flowable<SearchCityResponse> searchCity(Map<String, String> params) {
+        return applySchedulers(HttpClient.getHttpService().searchCity("https://search.heweather.net/find", params));
     }
 }

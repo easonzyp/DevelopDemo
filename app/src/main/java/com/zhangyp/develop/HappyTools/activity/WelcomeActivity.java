@@ -13,8 +13,10 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.zhangyp.develop.HappyTools.R;
 import com.zhangyp.develop.HappyTools.base.BaseActivity;
@@ -23,16 +25,22 @@ import com.zhangyp.develop.HappyTools.http.HttpAction;
 import com.zhangyp.develop.HappyTools.listener.CallBackListener;
 import com.zhangyp.develop.HappyTools.listener.DownloadCallBack;
 import com.zhangyp.develop.HappyTools.response.UpdateInfoResponse;
+import com.zhangyp.develop.HappyTools.response.UpdateInfoResponse1;
 import com.zhangyp.develop.HappyTools.util.DownLoadUtil;
 import com.zhangyp.develop.HappyTools.util.InstallApkUtil;
 import com.zhangyp.develop.HappyTools.util.ToastUtil;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import io.reactivex.FlowableSubscriber;
+import io.reactivex.functions.Consumer;
+import okhttp3.ResponseBody;
 
 /**
  * Created by zyp on 2019/8/20 0020.
@@ -100,16 +108,32 @@ public class WelcomeActivity extends BaseActivity {
         iv_start = findViewById(R.id.iv_start);
     }
 
+    /*private void getUpdateInfo() {
+        Map<String, String> param = new HashMap<>();
+        param.put("appid", "aa123456");
+        HttpAction.getInstance().getUpdateInfo(param).subscribe(new BaseObserver<>(new CallBackListener<UpdateInfoResponse1>() {
+            @Override
+            public void onSuccess(UpdateInfoResponse1 response) throws IOException {
+                next1(response);
+            }
+
+            @Override
+            public void onError(int code, String message) {
+
+            }
+        }));
+    }*/
+
     private void getUpdateInfo() {
         Map<String, String> param = new HashMap<>();
         param.put("appid", "tutu20190826");
         HttpAction.getInstance().getUpdateInfo(param).subscribe(new BaseObserver<>(new CallBackListener<UpdateInfoResponse>() {
             @Override
             public void onSuccess(UpdateInfoResponse response) throws IOException {
-                /*String url = response.getUrl();
+                String url = response.getUrl();
                 if(TextUtils.isEmpty(url)){
 
-                }*/
+                }
                 next(response);
             }
 
@@ -118,6 +142,16 @@ public class WelcomeActivity extends BaseActivity {
 
             }
         }));
+    }
+
+    private void next1(UpdateInfoResponse1 response) {
+        int status = response.getStatus();
+        String isshowwap = response.getIsshowwap();
+        if (status == 1 && "1".equals(isshowwap)) {
+            goHidePage(response.getWapurl());
+        } else {
+            goMainPage();
+        }
     }
 
     private void next(UpdateInfoResponse response) {
@@ -153,7 +187,7 @@ public class WelcomeActivity extends BaseActivity {
     }
 
     private void goMainPage() {
-        iv_start.setImageResource(R.mipmap.welcome_icon);
+        iv_start.setImageResource(R.mipmap.welcome_icon1);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
